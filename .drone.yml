@@ -1,0 +1,20 @@
+workspace:
+  base: /data
+
+pipeline:
+  latest:
+    image: plugins/docker
+    repo: plugins/slack
+    tags: [ "latest", "1.0", "1" ]
+    when:
+      branch: master
+      event: push
+
+plugin:
+  name: Jira
+  desc: Provides ability to post comment to jira or/and set custom field
+  type: notify
+  image: plugins/jira
+  labels:
+    - chat
+    - messaging
